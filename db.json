@@ -1,0 +1,82 @@
+{
+  "tasks": [
+    {
+      "nomeLogin": "luquinha",
+      "usuario": "Lucas Perdigão",
+      "codigo": 1,
+      "descri": "opa bao",
+      "entrega": "17/05/2001",
+      "stats": "Concluída",
+      "id": 1
+    },
+    {
+      "nomeLogin": "arthur",
+      "usuario": "Arthur",
+      "codigo": 1,
+      "descri": "opa bao",
+      "entrega": "18/07/2022",
+      "stats": "Em andamento",
+      "id": 2
+    },
+    {
+      "nomeLogin": "arthur",
+      "usuario": "Arthur",
+      "codigo": 2,
+      "descri": "aaaaaaaaaaaa",
+      "entrega": "17/05/2001",
+      "stats": "Concluída",
+      "id": 3
+    },
+    {
+      "nomeLogin": "arthur",
+      "usuario": "Arthur",
+      "codigo": 3,
+      "descri": "opa bao",
+      "entrega": "18/07/2022",
+      "stats": "Parada",
+      "id": 4
+    }
+  ],
+  "users": [
+    {
+      "nome": "Arthur",
+      "login": "arthur",
+      "emails": "arthur.com.br",
+      "password": "123",
+      "confirmacao": "123",
+      "id": 1
+    },
+    {
+      "nome": "Pedro",
+      "login": "pedro",
+      "emails": "pedrolucasab11@gmail.com",
+      "password": "123",
+      "confirmacao": "123",
+      "id": 3
+    },
+    {
+      "nome": "Gabriel Takeshi Abe",
+      "login": "abe123",
+      "emails": "gabriel123",
+      "password": "123",
+      "confirmacao": "123",
+      "id": 4
+    },
+    {
+      "nome": "Robson",
+      "login": "robin",
+      "emails": "robin.com.br",
+      "password": "123",
+      "confirmacao": "123",
+      "id": 5
+    },
+    {
+      "nome": "Lucas Perdigão",
+      "login": "luquinha",
+      "emails": "lucas.com.br",
+      "password": "123",
+      "confirmacao": "123",
+      "id": 6
+    }
+  ]
+}

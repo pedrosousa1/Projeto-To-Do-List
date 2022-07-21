@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arnia - Gerenciador de tarefas</title>
+  <link rel="shortcut icon" href="assets/imgs/arniaFav.png" type="image/x-icon" />
+
+  <link rel="stylesheet" href="assets/css/estilo.css" />
+  <link rel="stylesheet" href="assets/css/estiloMenu.css" />
+  <link rel="stylesheet" href="assets/css/estiloModal.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <script src="aplicacaoV2.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="topo">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-1 p-0 m-0"></div>
+
+        <div id="welcome" class="col-5 p-0 m-0"></div>
+
+        <div class="firstChild col-2 p-0 m-0">
+          <button id="botaoCadastro" class="buttonTop firstChild" onclick="modalCadastro()">Cadastre-se</button>
+        </div>
+
+        <div class="sub-menu entrar col-2 p-0 m-0">
+          <button id="botaoEntrar" class="buttonTop" onclick="modalEntra()">Entrar</button>
+        </div>
+
+        <div class="sub-menu entrar col-2 p-0 m-0">
+          <button id="botaoSair" class="buttonTop" onclick="botaoSair()">Sair</button>
+        </div>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="carregamento" class="animate__animated">
+    <img class="carregandoLogo" src="assets/imgs/arnia.png" /><img class="roxo" src="assets/imgs/loadBranco.svg" /><img
+      class="loadAmarelo" src="assets/imgs/loadAmarelo.svg" />
+  </div> -->
+
+  <div class="cLateral"></div>
+
+  <div class="container">
+    <div id="modalEntrar" class="blocoEntrar">
+      <div class="conteudoLogin">
+        <form>
+          <div class="mb-1">
+            <label class="dados">Login</label>
+          </div>
+          <input type="text" id="nomeLogin" />
+
+          <div class="mb-1">
+            <label class="dados">Senha</label>
+          </div>
+          <input type="text" id="senha" />
+        </form>
+        <div id="negarLogin"></div>
+        <button type="button" class="login" onclick="entrar('login', 'password')">
+          Fazer login
+        </button>
+      </div>
+    </div>
+    <div id="modalCadastrar" class="blocoCadastrar animate__animated">
+      <div class="conteudoCadastro">
+        <div>
+          <form>
+            <div class="mb-1 mt-1"><label>Nome Completo</label></div>
+            <input type="text" id="nome" />
+            <div id="obrigatorio1" class="obrigatorio"></div>
+
+            <div class="mb-1 mt-1"><label>Nome para login</label></div>
+            <input type="text" id="Login" />
+            <div id="cadastrado1"></div>
+            <div id="obrigatorio2" class="obrigatorio"></div>
+
+            <div class="mb-1 mt-1"><label>E-mail</label></div>
+            <input type="text" id="email" />
+            <div id="cadastrado2"></div>
+            <div id="obrigatorio3" class="obrigatorio"></div>
+
+            <div class="mb-1 mt-1"><label>Senha</label></div>
+            <input type="text" id="senhaCadastro" />
+            <div id="obrigatorio4" class="obrigatorio"></div>
+
+            <div class="mb-1 mt-1"><label>Confirme sua senha</label></div>
+            <input type="text" id="confirmacao" />
+            <div id="obrigatorio5" class="obrigatorio"></div>
+
+            <div>
+              <button type="button" class="cancelar" onclick="cancelaCadastro()">Cancelar</button>
+              <button type="button" class="finalizar" onclick="cadastrar()">
+                Fazer Cadastro
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <img class="logo" src="assets/imgs/logoArnia.png" alt="logo-Arnia" />
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="imagem-titulo">
+            <img src="assets/imgs/icone.png" />Gerenciador de tarefas
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button class="adicionar" onclick="adicionar()">
+          + Adicionar nova tarefa
+        </button>
+      </div>
+    </div>
+    <div id="modal" class="bloco">
+      <div id="conteudoModal" class="conteudoModal animate__animated">
+        <div class="tituloModal">Adicionar nova tarefa</div>
+        <div class="formulario">
+          <form>
+            <input type="hidden" name="usuario" id="usuario">
+            <div class="mb-1">
+              <label class="dados">Número</label>
+            </div>
+            <input type="number" id="num" />
+            <div id="obrigatorio6" class="obrigatorio"></div>
+
+            <div class="mb-1">
+              <label class="dados">Descrição</label>
+            </div>
+            <input type="text" id="descricao" />
+            <div id="obrigatorio7" class="obrigatorio"></div>
+
+            <div class="mb-1">
+              <label class="data">Data</label>
+            </div>
+            <input type="text" id="data" />
+            <div id="obrigatorio8" class="obrigatorio"></div>
+
+            <div class="mb-1">
+              <label class="dados">Status</label>
+            </div>
+            <select id="stt">
+              <option value="" hidden></option>
+              <option value="Concluída">Concluída</option>
+              <option value="Em andamento">Em andamento</option>
+              <option value="Parada">Parada</option>
+            </select>
+
+            <div id="obrigatorio9" class="obrigatorio"></div>
+
+            <div class="row">
+              <div class="col-6">
+                <button type="button" id="cancelar" class="cancelar" onclick="cancelaTarefa()">
+                  Cancelar
+                </button>
+              </div>
+              <div class="col-6">
+                <button class="buttonModal" type="button" id="salvar" onclick="salva()">
+                  Salvar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+
+      <div class="col-6">
+
+      </div>
+      <div class="col-6"></div>
+    </div>
+    <div class="row">
+      <div class="col-6"></div>
+      <div class="titulo col-6">Organizar por status</div>
+    </div>
+    <div class="row">
+      <div class="col-6 mb-3">
+        <form>
+          <div class="buscaTarefa">
+            <button type="button" class="lupa">
+              <i id="buscaTarefa" onclick="proucurarTarefa()" class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <input class="campoDeBusca" id="textoDeProucura" type="text" placeholder="Pesquisar tarefa">
+        </form>
+      </div>
+      <div class="col-6 select">
+        <select class="mb-3" id="sttsFiltro">
+          <option hidden></option>
+          <option>Concluída</option>
+          <option>Em andamento</option>
+          <option>Parada</option>
+        </select>
+        <i id="buscaTarefa1" onclick="proucurarTarefa()" class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+    <table>
+      <thead class="conteudo">
+        <tr>
+          <th>Núm <i onclick="numCrescente('codigo','asc')" class="fa-solid fa-caret-up"></i> <i
+              onclick="numCrescente('codigo','desc')" class="fa-solid fa-caret-down"></i></th>
+          <th>Descrição <i onclick="numCrescente('descri','asc')" class="fa-solid fa-caret-up"></i> <i
+              onclick="numCrescente('descri','desc')" class="fa-solid fa-caret-down"></i></th>
+          <th>Data de entrega <i onclick="numCrescente('entrega','asc')" class="fa-solid fa-caret-up"></i> <i
+              onclick="numCrescente('entrega','desc')" class="fa-solid fa-caret-down"></i></th>
+          <th>Status <i onclick="numCrescente('stats','asc')" class="fa-solid fa-caret-up"></i> <i
+              onclick="numCrescente('stats','desc')" class="fa-solid fa-caret-down"></i></th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody id="conteudos"></tbody>
+    </table>
+    <div id="modalDelete" class="blocoDelete">
+      <div class="conteudoDelete">
+        <div class="tituloModal">Você realmente deseja exlcluir esta tarefa?</div>
+        <div>
+          <button class="buttonModal excluirTarefa" onclick="excluir()">Sim, quero excluir</button>
+          <button class="cancelar" onclick="cancelarExcluir()">Não, cancelar</button>
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </div>
+  <div class="fixed-bottom alert d-none animate__animated alert-success" id="tarefaSalvo"></div>
+  <div class="fixed-bottom alert d-none animate__animated alert-danger" id="cadastroCancelado"></div>
+  <div class="fixed-bottom alert d-none animate__animated alert-success" id="cadastroSalvo"></div>
+</body>
+
+</html>

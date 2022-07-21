@@ -1,0 +1,171 @@
+
+/* MODAL TOPO CADASTRO E LOGIN */
+.blocoEntrar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.377);
+  }
+  .conteudoLogin {
+    background-color: white;
+    width: 40%;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .finalizar {
+    color: #68519d;
+    background-color: #ffff;
+    border: 1px solid #68519d;
+    margin-top: 40px;
+    padding: 13px 18px;
+    border-radius: 5px;
+  }
+  .finalizar:hover {
+    background-color: #68519d;
+    color: white;
+  }
+  .blocoCadastrar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 450px;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+  .conteudoCadastro {
+    text-align: center;
+    background-color: white;
+    max-width: 30%;
+    padding: 30px;
+    margin: 0 auto;
+    border: 3px solid #68519d;
+    border-radius: 10px;
+  }
+  .cancelar {
+    border: 1px solid white;
+    background-color: white;
+    color: #828282;
+    margin-top: 60px;
+  }
+
+/*MODAL ADICIONAR TAREFA*/
+
+.bloco {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.377);
+  }
+  .conteudoModal {
+    background-color: white;
+    width: 40%;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  .tituloModal {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #68519d;
+  }
+  label.dados {
+    color: #68519d;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  label.data {
+    color: #68519d;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  input#num {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    width: 100%;
+    height: 41px;
+  }
+  input#descricao {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    width: 100%;
+    height: 41px;
+  }
+  input#data {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    height: 41px;
+    text-align: center;
+  }
+  .obrigatorio {
+    color: red;
+    font-size: 11px;
+  }
+  .obrigatorioD {
+    color: red;
+    font-size: 11px;
+  }
+  .cancelar {
+    border: 1px solid white;
+    background-color: white;
+    color: #828282;
+    margin-top: 60px;
+  }
+  .buttonModal {
+    border: 1px solid #68519d;
+    border-radius: 20px;
+    padding: 5px 30px;
+    background-color: white;
+    color: #828282;
+    margin-top: 60px;
+    float: right;
+    color: #68519d;
+  }
+  .buttonModal:hover {
+    background-color: #2c2661;
+    color: white;
+  }
+
+  /*MODAL DELETE*/
+
+  .blocoDelete {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.377);
+  }
+  .conteudoDelete {
+    background-color: white;
+    width: 40%;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .excluirTarefa{
+    margin-right: 50px;
+  }
