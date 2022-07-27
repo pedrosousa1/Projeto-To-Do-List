@@ -1,64 +1,129 @@
 //json-server --watch db.json
+
 let linha;
 let tarefa;
 let tarefas;
+let img = "assets/imgs/logoArnia.png";
+let imgBranca = "assets/imgs/arnia.png";
+let contraste = false;
+
+function autoContraste() {
+  let corpo = document.getElementById("corpo");
+  corpo.classList.toggle("body");
+  let coluna = document.getElementById("cLateral");
+  coluna.classList.toggle("cLateral1");
+  let conteudo = document.getElementById("conteudo");
+  conteudo.classList.toggle("conteudo1");
+  let botaoCad = document.getElementById("botaoCadastro");
+  botaoCad.classList.toggle("buttonTop1");
+  let botaoEntrar = document.getElementById("botaoEntrar");
+  botaoEntrar.classList.toggle("buttonTop1");
+  let sair = document.getElementById("botaoSair");
+  sair.classList.toggle("botaoSair1");
+  let titulo = document.getElementById("imagem-titulo");
+  titulo.classList.toggle("imagem-titulo1");
+  let conteudos = document.getElementById("conteudos");
+  conteudos.classList.toggle("conteudos1");
+  let welcome = document.getElementById("welcome");
+  welcome.classList.toggle("welcome1");
+  let totalizacao = document.getElementById("totalizacao");
+  totalizacao.classList.toggle("totalizacao1");
+
+  let tema = document.getElementById("contraste");
+  tema.classList.toggle("contraste1");
+  contraste = !contraste;
+  if (contraste) {
+    document.getElementById("logoArnia").src = imgBranca;
+    document.getElementById("contraste").innerHTML =
+      "<i class='fa-solid fa-moon'></i> Tema";
+  } else {
+    document.getElementById("logoArnia").src = img;
+    document.getElementById("contraste").innerHTML =
+      "<i class='fa-solid fa-sun'></i> Tema";
+  }
+}
 
 function modalCadastro() {
   modalCadastrar.style.display = "block";
-  document.getElementById("obrigatorio1").innerHTML = "";
-  document.getElementById("obrigatorio2").innerHTML = "";
-  document.getElementById("obrigatorio3").innerHTML = "";
-  document.getElementById("obrigatorio4").innerHTML = "";
-  document.getElementById("obrigatorio5").innerHTML = "";
+  document.getElementById("cadastrado").innerHTML = "";
+  document.getElementById("obrigatorioNome").innerHTML = "";
+  document.getElementById("obrigatorioLogin").innerHTML = "";
+  document.getElementById("obrigatorioEmail").innerHTML = "";
+  document.getElementById("obrigatorioSenha").innerHTML = "";
+  document.getElementById("obrigatorioConfirma").innerHTML = "";
+  document.getElementById("obrigatorioTermos").innerHTML = "";
   document.getElementById("nome").value = "";
   document.getElementById("Login").value = "";
   document.getElementById("email").value = "";
   document.getElementById("senhaCadastro").value = "";
-  document.getElementById("confirmacao").value = "";
-  slideRight()
+  document.getElementById("senhaCadastro2").value = "";
+  slideRight();
+}
+
+function cancelaCadastro() {
+  modalCadastrar.style.display = "block";
+  document.getElementById("obrigatorioNome").innerHTML = "";
+  document.getElementById("obrigatorioLogin").innerHTML = "";
+  document.getElementById("obrigatorioEmail").innerHTML = "";
+  document.getElementById("obrigatorioSenha").innerHTML = "";
+  document.getElementById("obrigatorioConfirma").innerHTML = "";
+  document.getElementById("obrigatorioTermos").innerHTML = "";
+  document.getElementById("nome").value = "";
+  document.getElementById("Login").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("senhaCadastro").value = "";
+  document.getElementById("senhaCadastro2").value = "";
+  slideLeft();
 }
 
 async function cadastrar() {
-
   let nome = document.getElementById("nome").value;
   let login = document.getElementById("Login").value;
   let emails = document.getElementById("email").value;
   let password = document.getElementById("senhaCadastro").value;
-  let confirm = document.getElementById("confirmacao").value;
+  let password2 = document.getElementById("senhaCadastro2").value;
+  let termos = document.getElementById("termos").checked;
+  let obr = "<div>*Campo obrigatório</div>";
 
   if (nome.length === 0) {
     modalCadastrar.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio1").innerHTML = obr;
+    document.getElementById("obrigatorioNome").innerHTML = "*Campo Obrigatório";
   } else if (login.length === 0) {
     modalCadastrar.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio2").innerHTML = obr;
+    document.getElementById("obrigatorioLogin").innerHTML =
+      "*Campo Obrigatório";
   } else if (emails.length === 0) {
     modalCadastrar.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio3").innerHTML = obr;
+    document.getElementById("obrigatorioEmail").innerHTML =
+      "*Campo Obrigatório";
   } else if (senhaCadastro.value === "") {
     modalCadastrar.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio4").innerHTML = obr;
-  } else if (confirmacao.value === ""){
+    document.getElementById("obrigatorioSenha").innerHTML =
+      "*Campo Obrigatório";
+  } else if (termos.checked == false) {
     modalCadastrar.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio5").innerHTML = obr;
-  }else {
-    let dados = await verificaDados("users", `?login=${login}`)
-    console.log(dados)
-    if(dados.length > 0){
-      document.getElementById("cadastrado1").innerHTML = "Nome de usuário já cadastrado"
-    }else{
+    document.getElementById("obrigatorioTermos").innerHTML =
+      "*Campo Obrigatório";
+  } else if (senhaCadastro2.value === "") {
+    modalCadastrar.style.display = "block";
+    document.getElementById("validacao").innerHTML = "*Campo Obrigatório";
+  } else if (password != password2) {
+    modalCadastrar.style.display = "block";
+    document.getElementById("obrigatorioConfirma").innerHTML =
+      "*As senhas não conferem";
+  } else {
+    let dados = await verificaDados("users", `?login=${login}`);
+    // console.log(dados)
+    if (dados.length > 0) {
+      document.getElementById("cadastrado").innerHTML =
+        "*Nome de usuário já cadastrado";
+    } else {
       user = {
         nome: nome,
         login: login,
         emails: emails,
-        password: password,
-        confirmacao: confirm,
-      };  
+        password: btoa(password),
+      };
       await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
@@ -66,22 +131,16 @@ async function cadastrar() {
         },
         body: JSON.stringify(user),
       });
-      slideLeft()
-    }    
+      slideLeft();
+    }
   }
-
 }
 
-async function verificaDados(endpoint, param_busca){
-  let dados = await fetch("http://localhost:3000/" + endpoint + param_busca)
-  let resposta = await dados.json()
-  console.log(resposta)
-  return resposta
-}
-
-function cancelaCadastro(){
-  modalCadastrar.style.display = "block";
-  slideLeft()
+async function verificaDados(endpoint, param_busca) {
+  let dados = await fetch("http://localhost:3000/" + endpoint + param_busca);
+  let resposta = await dados.json();
+  // console.log(resposta)
+  return resposta;
 }
 
 function modalEntra() {
@@ -89,42 +148,58 @@ function modalEntra() {
 }
 
 async function entrar() {
-  let nomeLogin = document.getElementById("nomeLogin").value
-  let senhaLogin = document.getElementById("senha").value
+  let nomeLogin = document.getElementById("nomeLogin").value;
+  let senhaLogin = document.getElementById("senha").value;
 
-  let espera = await verificaDados("users", `?login=${nomeLogin}&password=${senhaLogin}`)
-  console.log(espera)
+  let espera = await verificaDados(
+    "users",
+    `?login=${nomeLogin}&password=${btoa(senhaLogin)}`
+  );
+  // console.log(espera)
 
-  if(espera.length > 0){
-    document.getElementById("welcome").innerHTML = `Seja Bem vindo ${espera[0].nome}`;
+  if (espera.length > 0) {
+    document.getElementById(
+      "welcome"
+    ).innerHTML = `Seja bem-vindo(a), ${espera[0].nome}!`;
     modalEntrar.style.display = "none";
-    document.getElementById("usuario").value = espera[0].nome
-  }else {
+    document.getElementById("usuario").value = espera[0].nome;
+    document.getElementById("botaoSair").style.color = "#f8b04e";
+    document.getElementById("welcome").classList.remove("d-none");
+    document.getElementById("welcome").classList.add("d-block");
+    document.getElementById("welcome").style.color = "#68519d";
+    document.getElementById("adicionar").classList.remove("d-none");
+    document.getElementById("adicionar").classList.add("d-block");
+    document.getElementById("botaoEntrar").innerHTML = `${espera[0].nome}`;
+    document.getElementById("botaoEntrar").disabled = true;
+    await imprimeTarefas(nomeLogin);
+    fadeOut();
+  } else {
     document.getElementById("negarLogin").innerHTML =
-      "Login ou senha Inválidos";
+      "*Login ou senha Inválidos";
   }
+}
 
-  document.getElementById("botaoEntrar").classList.add("d-none")
-  document.getElementById("botaoSair").classList.remove("d-none")
-  document.getElementById("welcome").classList.remove("d-none")
-  document.getElementById("welcome").classList.add("d-block")
+function cancelarLogin() {
+  modalEntrar.style.display = "none";
 }
 
 function botaoSair() {
-  document.getElementById("botaoSair").classList.add("d-none")
-  document.getElementById("botaoEntrar").classList.remove("d-none")
-  document.getElementById("botaoEntrar").classList.add("d-block")
-  document.getElementById("welcome").classList.remove("d-block")
-  document.getElementById("welcome").classList.add("d-none")
+  document.getElementById("welcome").classList.remove("d-block");
+  document.getElementById("welcome").classList.add("d-none");
+  document.getElementById("botaoEntrar").disabled = false;
+  document.getElementById("botaoEntrar").innerHTML = "Entrar";
+  document.getElementById("adicionar").classList.remove("d-block");
+  document.getElementById("adicionar").classList.add("d-none");
+  document.getElementById("negarLogin").innerHTML = "";
+  document.getElementById("botaoCadastro").classList.remove("animate__fadeOut");
+  document.getElementById("totalizacao").innerHTML = "";
 
-  // let linha = ""
-
-  // document.getElementById("conteudos").innerHTML = linha;
+  let linha = "";
+  document.getElementById("conteudos").innerHTML = linha;
 }
 
 function carregamento() {
   document.getElementById("carregamento").style.display = "block";
-  // fadeLoad()
 }
 
 window.addEventListener("load", (event) => {
@@ -143,10 +218,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 function adicionar() {
   let modal = document.getElementById("modal");
   modal.style.display = "block";
-  document.getElementById("obrigatorio6").innerHTML = "";
-  document.getElementById("obrigatorio7").innerHTML = "";
-  document.getElementById("obrigatorio8").innerHTML = "";
-  document.getElementById("obrigatorio9").innerHTML = "";
+  document.getElementById("tituloModal").innerHTML = "Adicionar Tarefa";
+  document.getElementById("obrigatorioNumero").innerHTML = "";
+  document.getElementById("obrigatorioDesc").innerHTML = "";
+  document.getElementById("obrigatorioData").innerHTML = "";
+  document.getElementById("obrigatorioStts").innerHTML = "";
   document.getElementById("num").value = "";
   document.getElementById("descricao").value = "";
   document.getElementById("data").value = "";
@@ -163,31 +239,29 @@ function cancelaTarefa() {
 async function salva() {
   let salvarInfo = document.getElementById("salvar");
 
-  let usuario = document.getElementById("usuario").value
+  let nomeLogin = document.getElementById("nomeLogin").value;
+  let usuario = document.getElementById("usuario").value;
   let num = document.getElementById("num").value;
   let descricao = document.getElementById("descricao").value;
   let data = document.getElementById("data").value;
   let stts = document.getElementById("stt").value;
-  
 
   if (num.length === 0) {
     modal.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio6").innerHTML = obr;
+    document.getElementById("obrigatorioNumero").innerHTML =
+      "*Campo Obrigatório";
   } else if (descricao.length === 0) {
     modal.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio7").innerHTML = obr;
+    document.getElementById("obrigatorioDesc").innerHTML = "*Campo Obrigatório";
   } else if (data.length === 0) {
     modal.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio8").innerHTML = obr;
+    document.getElementById("obrigatorioData").innerHTML = "*Campo Obrigatório";
   } else if (stt.value === "") {
     modal.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio9").innerHTML = obr;
+    document.getElementById("obrigatorioStts").innerHTML = "*Campo Obrigatório";
   } else {
     tarefa = {
+      nomeLogin: nomeLogin,
       usuario: usuario,
       codigo: parseInt(num),
       descri: descricao,
@@ -203,18 +277,25 @@ async function salva() {
       body: JSON.stringify(tarefa),
     });
 
-    await imprimeTarefas();
+    await imprimeTarefas(nomeLogin);
     tarefaCadastrada();
     slideOutUp();
   }
 }
 
-async function imprimeTarefas() {
+async function imprimeTarefas(nomeLogin) {
+  let total = 0;
   let linha = "";
-  let response = await fetch(" http://localhost:3000/tasks");
+  if (nomeLogin != "") {
+    nomeLogin = "/?nomeLogin=" + nomeLogin;
+  }
+
+  let response = await fetch(`http://localhost:3000/tasks${nomeLogin}`);
   let tasks = await response.json();
+  console.log(tasks);
 
   tasks.forEach((tarefa) => {
+    total++;
     let cor;
     // console.log(tarefa.stats);
     if (tarefa.stats === "Concluída") {
@@ -229,32 +310,42 @@ async function imprimeTarefas() {
       linha +
       `
         <tr id='linha${tarefa.id}'>
-            <td id='codigo${tarefa.id}'>${tarefa.codigo}</td>
-            <td id='descri${tarefa.id}'>${tarefa.descri}</td>
+            <td id='codigo${tarefa.id}' class='text-break'>${tarefa.codigo}</td>
+            <td id='descri${tarefa.id}' class='text-break textoResponsivo'>${tarefa.descri}</td>
             <td id='entrega${tarefa.id}'>${tarefa.entrega}</td>
             <td id='stats${tarefa.id}' class='${cor} teste'>${tarefa.stats}</td>
-            <td class = 'linhaFinal' ><span class = 'editar' id='editar${tarefa.id}'><button onclick='edita(${tarefa.id})'><img src=assets/imgs/editar.png></button></span> 
-            <span class = 'lixeira'><button id='remove${tarefa.id}' onclick="modalExcluir(${tarefa.id})"> <img src=assets/imgs/excluir.png></button></span></td>
+            <td class = 'linhaFinal' ><span class = 'botaoTabela editar' id='editar${tarefa.id}'><i onclick='edita(${tarefa.id})' class="me-1 fa-solid fa-pen-to-square"></i></span> 
+            <span class = 'botaoTabela lixeira'><i id='remove${tarefa.id}' onclick="modalExcluir(${tarefa.id})" class="fa-solid fa-trash-can"></i></span></td>
         </tr>
     `;
 
-    //console.log(linha);
+    // console.log(linha);
   });
 
   document.getElementById("conteudos").innerHTML = linha;
+  if (total == 1) {
+    document.getElementById("totalizacao").innerHTML =
+      total + " Tarefa encontrada.";
+  } else {
+    document.getElementById("totalizacao").innerHTML =
+      total + " Tarefas encontradas.";
+  }
 }
-
-imprimeTarefas();
 
 async function edita(idTarefa) {
   slideInDown();
 
-  console.log(idTarefa);
+  // console.log(idTarefa);
   modal.style.display = "block";
   let response = await fetch(`http://localhost:3000/tasks/${idTarefa}`);
   let tarefa = await response.json();
-  console.log(tarefa);
+  // console.log(tarefa);
 
+  document.getElementById("obrigatorioNumero").innerHTML = "";
+  document.getElementById("obrigatorioDesc").innerHTML = "";
+  document.getElementById("obrigatorioData").innerHTML = "";
+  document.getElementById("obrigatorioStts").innerHTML = "";
+  document.getElementById("tituloModal").innerHTML = "Editar tarefa";
   document.getElementById("num").value = tarefa.codigo;
   document.getElementById("descricao").value = tarefa.descri;
   document.getElementById("data").value = tarefa.entrega;
@@ -266,6 +357,8 @@ async function edita(idTarefa) {
 }
 
 async function saveEdit(idTarefa) {
+  let nomeLogin = document.getElementById("nomeLogin").value;
+  let usuario = document.getElementById("usuario").value;
   let num = document.getElementById("num").value;
   let descricao = document.getElementById("descricao").value;
   let data = document.getElementById("data").value;
@@ -274,23 +367,22 @@ async function saveEdit(idTarefa) {
 
   if (num.length === 0) {
     modal.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio1").innerHTML = obr;
+    document.getElementById("obrigatorioNumero").innerHTML =
+      "*Campo Obrigatório";
   } else if (descricao.length === 0) {
     modal.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio2").innerHTML = obr;
+    document.getElementById("obrigatorioDesc").innerHTML = "*Campo Obrigatório";
   } else if (data.length === 0) {
     modal.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio3").innerHTML = obr;
+    document.getElementById("obrigatorioData").innerHTML = "*Campo Obrigatório";
   } else if (stt.value === "") {
     modal.style.display = "block";
-    obr = "<div>*Campo obrigatório</div>";
-    document.getElementById("obrigatorio4").innerHTML = obr;
+    document.getElementById("obrigatorioStts").innerHTML = "*Campo Obrigatório";
   } else {
     tarefa = {
-      codigo: num,
+      nomeLogin: nomeLogin,
+      usuario: usuario,
+      codigo: parseInt(num),
       descri: descricao,
       entrega: data,
       stats: stts,
@@ -308,31 +400,31 @@ async function saveEdit(idTarefa) {
       salva();
     };
 
-    await imprimeTarefas();
+    await imprimeTarefas(nomeLogin);
     slideOutUp();
   }
 }
 
+function modalExcluir(parametro) {
+  modalDelete.style.display = "block";
+  deletar = parametro;
+}
+
+function cancelarExcluir() {
+  modalDelete.style.display = "none";
+}
+
 let deletar;
-
-function modalExcluir(parametro){
-  modalDelete.style.display = "block"
-  deletar = parametro
-}
-
-function cancelarExcluir(){
-  modalDelete.style.display = "none"
-}
-
 async function excluir() {
-  modalDelete.style.display = "none"
+  let nomeLogin = document.getElementById("nomeLogin").value;
+  modalDelete.style.display = "none";
   await fetch(`http://localhost:3000/tasks/${deletar}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
     },
   });
-  await imprimeTarefas();
+  await imprimeTarefas(nomeLogin);
 }
 
 function tarefaCadastrada() {
@@ -353,22 +445,30 @@ function tarefaCadastrada() {
   }, 3000);
 }
 
-async function proucurarTarefa(){
-  let linha = ""
-  var valor = ""
-  valor = document.getElementById("textoDeProucura").value
-  var status = ""
-  status = document.getElementById("sttsFiltro").value
-  
-  if(valor != ""){
-    var espera = await fetch(`http://localhost:3000/tasks?q=${valor}`)
-    var resposta = await espera.json()
-  }if(status != ""){
-    var espera = await fetch(`http://localhost:3000/tasks?q=${status}`)
-    var resposta = await espera.json()
+async function proucurarTarefa() {
+  let total = 0;
+  let nomeLogin = document.getElementById("nomeLogin").value;
+  let linha = "";
+  var valor = "";
+  valor = document.getElementById("textoDeProucura").value;
+  var status = "";
+  status = document.getElementById("sttsFiltro").value;
+
+  if (valor != "") {
+    var espera = await fetch(
+      `http://localhost:3000/tasks?q=${valor}&nomeLogin=${nomeLogin}`
+    );
+    var resposta = await espera.json();
   }
- 
-  resposta.forEach((tarefa) =>{
+  if (status != "") {
+    var espera = await fetch(
+      `http://localhost:3000/tasks?q=${status}&nomeLogin=${nomeLogin}`
+    );
+    var resposta = await espera.json();
+  }
+
+  resposta.forEach((tarefa) => {
+    total++;
     let cor;
     if (tarefa.stats === "Concluída") {
       cor = "verde";
@@ -383,28 +483,38 @@ async function proucurarTarefa(){
       `
         <tr id='linha${tarefa.id}'>
             <td id='codigo${tarefa.id}'>${tarefa.codigo}</td>
-            <td id='descri${tarefa.id}'>${tarefa.descri}</td>
+            <td id='descri${tarefa.id}' class='text-break textoResponsivo'>${tarefa.descri}</td>
             <td id='entrega${tarefa.id}'>${tarefa.entrega}</td>
             <td id='stats${tarefa.id}' class='${cor} teste'>${tarefa.stats}</td>
-            <td class = 'linhaFinal' ><span class = 'editar' id='editar${tarefa.id}'><button onclick='edita(${tarefa.id})'><img src=assets/imgs/editar.png></button></span>
-            <span class = 'lixeira'><button id='remove${tarefa.id}' onclick="excluir(${tarefa.id})"> <img src=assets/imgs/excluir.png></button></span></td>
+            <td class = 'linhaFinal' ><span class = 'botaoTabela editar' id='editar${tarefa.id}'><i onclick='edita(${tarefa.id})' class="me-1 fa-solid fa-pen-to-square"></i></span> 
+            <span class = 'botaoTabela lixeira'><i id='remove${tarefa.id}' onclick="modalExcluir(${tarefa.id})" class="fa-solid fa-trash-can"></i></span></td>
         </tr>
     `;
   });
 
   document.getElementById("conteudos").innerHTML = linha;
-  document.getElementById("sttsFiltro").value = ""
+  document.getElementById("sttsFiltro").value = "";
+  document.getElementById("textoDeProucura").value = "";
 
+  if (total == 1) {
+    document.getElementById("totalizacao").innerHTML =
+      total + " Tarefa encontrada.";
+  } else {
+    document.getElementById("totalizacao").innerHTML =
+      total + " Tarefas encontradas.";
+  }
 }
 
-async function numCrescente(param1, param2){
-  document.getElementById("numAsc")
-  let linha = ""
-  let espera = await fetch(`http://localhost:3000/tasks?_sort=${param1}&_order=${param2}`)
-  let resposta = await espera.json()  
-  console.log(resposta)
-  
-  resposta.forEach((tarefa) =>{
+async function numCrescente(variavel, AscDesc) {
+  let nomeLogin = document.getElementById("nomeLogin").value;
+  let linha = "";
+  let espera = await fetch(
+    `http://localhost:3000/tasks?_sort=${variavel}&_order=${AscDesc}&nomeLogin=${nomeLogin}`
+  );
+  let resposta = await espera.json();
+  // console.log(resposta)
+
+  resposta.forEach((tarefa) => {
     let cor;
     if (tarefa.stats === "Concluída") {
       cor = "verde";
@@ -419,11 +529,11 @@ async function numCrescente(param1, param2){
       `
         <tr id='linha${tarefa.id}'>
             <td id='codigo${tarefa.id}'>${tarefa.codigo}</td>
-            <td id='descri${tarefa.id}'>${tarefa.descri}</td>
+            <td id='descri${tarefa.id}'class='text-break textoResponsivo'>${tarefa.descri}</td>
             <td id='entrega${tarefa.id}'>${tarefa.entrega}</td>
-            <td id='stats${tarefa.id}' class='${cor} teste'>${tarefa.stats}</td>
-            <td class = 'linhaFinal' ><span class = 'editar' id='editar${tarefa.id}'><button onclick='edita(${tarefa.id})'><img src=assets/imgs/editar.png></button></span>
-            <span class = 'lixeira'><button id='remove${tarefa.id}' onclick="excluir(${tarefa.id})"> <img src=assets/imgs/excluir.png></button></span></td>
+            <td id='stats${tarefa.id}' class='${cor} teste'>${tarefa.stats} </td>
+            <td class = 'linhaFinal' ><span class = 'botaoTabela editar' id='editar${tarefa.id}'><i onclick='edita(${tarefa.id})' class="me-1 fa-solid fa-pen-to-square"></i></span> 
+            <span class = 'botaoTabela lixeira'><i id='remove${tarefa.id}' onclick="modalExcluir(${tarefa.id})" class="fa-solid fa-trash-can"></i></span></td>
         </tr>
     `;
   });
@@ -484,14 +594,14 @@ function cadastroComSucesso() {
   }, 3000);
 }
 
-function slideRight(){
+function slideRight() {
   let sucesso;
   sucesso = document.getElementById("modalCadastrar");
   sucesso.classList.remove("animate__slideOutRight");
   sucesso.classList.add("animate__slideInRight");
 }
 
-function slideLeft(){
+function slideLeft() {
   let sucesso;
   sucesso = document.getElementById("modalCadastrar");
   sucesso.classList.remove("animate__slideInRight");
@@ -501,3 +611,8 @@ function slideLeft(){
   }, 650);
 }
 
+function fadeOut() {
+  let sucesso;
+  sucesso = document.getElementById("botaoCadastro");
+  sucesso.classList.add("animate__fadeOut");
+}

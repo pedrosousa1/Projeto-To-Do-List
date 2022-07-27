@@ -49,7 +49,6 @@ body {
 }
 .logo {
   width: 220px;
-  margin-top: 100px;
   margin-left: 100px;
 }
 .imagem-titulo {
@@ -79,9 +78,6 @@ body {
 .adicionar:hover {
   background-color: #68519d;
   color: white;
-  -webkit-box-shadow: 0px 0px 11px 6px rgba(104, 81, 157, 0.568);
-  -moz-box-shadow: 0px 0px 11px 6px rgba(104, 81, 157, 0.521);
-  box-shadow: 0px 0px 11px 6px rgba(104, 81, 157, 0.527);
 }
 .editar button {
   border: 1px solid #f5f5f5;
@@ -101,14 +97,13 @@ body {
 }
 table {
   width: 750px;
-  margin-left: 100px; 
+  margin-left: 100px;
 }
-tbody > tr:nth-child(even) {
+.conteudos > tr:nth-child(even) {
   background-color: #f5f5f5;
 }
-#conteudos {
+.conteudos {
   font-weight: 400;
-  font-size: 15px;
   line-height: 22px;
   width: 700px;
   padding: 5px 13px;
@@ -119,46 +114,412 @@ tbody > tr:nth-child(even) {
   background-color: #68519d;
 }
 .verde {
-  color: green;
+  color: #27ae60;
+  font-weight: 500;
 }
 .laranja {
-  color: orange;
+  color: #f8b04e;
+  font-weight: 500;
 }
 .vermelho {
-  color: red;
+  color: #eb5757;
+  font-weight: 500;
 }
- .campoDeBusca{
+.campoDeBusca {
   width: 195px;
-  margin-left: 100px;
+  margin: 0px 6px;
 }
-.buscaTarefa{
-  position: relative;
-}
-.lupa{
+.lupa {
   position: absolute;
-    z-index: 1;
-    left: 256px;
-    margin-top: 8px;
-    border: none;
-    background-color: white;
+  z-index: 1;
+  left: 526px;
+  bottom: 12px;
+  font-size: 20px;
+  margin-top: 8px;
+  border: 2px solid #68519d;
+  border-radius: 18px;
+  background-color: white;
 }
-.col-6{
+.col-6 {
   padding: 0 !important;
 }
-.titulo{
+.titulo {
   padding: 0;
   font-size: 20px;
-    font-weight: 800;
-    color: #68519d;
+  font-weight: 800;
+  color: #68519d;
 }
 select#sttsFiltro {
-  margin-left: 35px;
   border: 1px solid #000000;
-    border-radius: 10px;
-    width: 130px;
-    height: 41px;
-    text-align: center;
+  border-radius: 10px;
+  width: 130px;
+  height: 41px;
+  text-align: center;
 }
-#welcome {
-  width: 20%;
+.botaoPesquisa {
+  background-color: white;
+  border: 1px solid #68519d;
+  border-radius: 10px;
+  color: #68519d;
+  font-weight: 600;
+  width: 170px;
+  height: 40px;
+}
+.filtro {
+  position: relative;
+  height: 50px;
+  margin-left: 85px !important;
+  z-index: 1;
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+.buttonTop {
+  margin: 20px 15px;
+  background-color: white;
+  color: #68519d !important;
+  border: none;
+  border-radius: 20px;
+  height: 46px;
+  font-size: 20px;
+  font-weight: bold;
+}
+input {
+  border: 1px solid #68519d;
+  border-radius: 10px;
+  width: 300px;
+  height: 41px;
+}
+.login {
+  color: #68519d;
+  background-color: #ffff;
+  border: 1px solid #68519d;
+  margin-top: 40px;
+  padding: 13px 18px;
+  border-radius: 5px;
+}
+.login:hover {
+  background-color: #68519d;
+  color: white;
+}
+.entrar {
+  width: 8%;
+}
+.welcome {
+  width: 30%;
+  width: 30%;
+  font-size: 25px;
+  margin-top: 50px !important;
+  margin-left: 100px;
+}
+.botaoSair {
+  margin: 20px 15px;
+  background-color: #ffff;
+  color: #ffff;
+  border: none;
+  border-radius: 20px;
+  height: 46px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.contraste {
+  margin-top: 31px;
+  background-color: white;
+  border: none;
+  width: 70px;
+  color: #68519d;
+}
+.contraste:hover {
+  background-color: #d7cae5;
+  border: 1px solid #68519d;
+  color: #1a1033;
+  border-radius: 15px;
+  width: 70px;
+  border: none;
+  width: 70px;
+  margin-top: 31px;
+}
+#negarLogin {
+  color: red;
+}
+.termos {
+  font-size: 10px;
+  display: flex;
+  align-items: flex-end;
+}
+input.termos {
+  width: 18px;
+}
+.cadastrado {
+  color: red;
+}
+.foot {
+  display: block;
+  width: 100%;
+  background-color: #1a1033;
+}
+.botaoTabela:hover {
+  cursor: pointer;
+}
+div#tabela {
+  overflow-x: auto;
+}
+.totalizacao {
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 11px;
+  padding-top: 15px;
+  width: 67%;
+}
+.totalizacao {
+  color: #2c2661;
+}
+#totalizacao {
+  margin-left: 100px;
+}
+/* contraste */
+.body {
+  background-color: #1a1033;
+}
+.cLateral1 {
+  position: fixed;
+  height: 100%;
+  width: 80px;
+  background-color: #0e1327;
+  border-right: 9px solid #f8b04e;
+}
+.conteudo1 {
+  font-weight: 700;
+  color: #ffff;
+  margin-top: 80px;
+}
+.buttonTop1 {
+  margin: 20px 15px;
+  background-color: #1a1033;
+  color: white !important;
+  border: none;
+  border-radius: 20px;
+  height: 46px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.botaoSair1 {
+  margin: 20px 15px;
+  background-color: #1a1033;
+  color: #1a1033;
+  border: none;
+  border-radius: 20px;
+  height: 46px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.imagem-titulo1 {
+  color: white;
+}
+.conteudos1 {
+  color: white;
+}
+.conteudos1 > tr:nth-child(even) {
+  background-color: #0e1327;
+}
+.welcome1 {
+  color: #f8b04e !important;
+}
+.contraste1 {
+  background-color: #1a1033;
+  color: #ffff;
+}
+.totalizacao1 {
+  color: #ffff;
+}
+
+@media screen and (max-width: 416px) {
+  html {
+    overflow-x: auto;
+  }
+  body {
+    background: url("");
+  }
+  .cLateral {
+    width: 20px;
+    border-right: 4px solid #d7cae5;
+  }
+  .cLateral1 {
+    width: 20px;
+    border-right: 4px solid #f8b04e;
+  }
+  .carregandoLogo {
+    width: 211px;
+    margin-top: 50%;
+    margin-left: 11%;
+  }
+  .roxo {
+    margin-top: 36%;
+    margin-left: -3%;
+    width: 80px;
+  }
+  .loadAmarelo {
+    width: 60px;
+    margin-top: 52%;
+    margin-left: -7%;
+  }
+  .buttonTop,
+  .buttonTop1 {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+  }
+  .contraste {
+    margin-top: 10px;
+  }
+  .contraste:hover {
+    background-color: #d7cae5;
+    color: #1a1033;
+    border-radius: 15px;
+    border: none;
+    width: 70px;
+    margin-top: 12px !important;
+  }
+  .logo {
+    width: 160px;
+    margin-top: 30px;
+    margin-left: 32vw;
+  }
+  .imagem-titulo {
+    font-size: 16px;
+    margin-top: 0;
+    margin-left: 25vw;
+  }
+  .filtro {
+    margin-left: 0px !important;
+    margin-top: 30px;
+    margin-bottom: 0;
+    width: 100px !important;
+  }
+  table {
+    width: 345px;
+    margin-top: 20px;
+    margin-left: 14px;
+    font-size: 11px;
+  }
+  tbody {
+    font-size: 11px;
+  }
+  .conteudos {
+    font-size: 11px;
+  }
+  .welcome,
+  .welcome1 {
+    font-size: 16px;
+    margin-top: 20px !important;
+    margin-left: 28vw;
+    margin-bottom: 15px;
+  }
+  .adicionar {
+    margin-left: 34vw;
+    font-size: 10px;
+    width: 110px;
+  }
+  .botaoSair {
+    margin: 0;
+    padding: 0;
+  }
+  .col-3 {
+    padding: 0 !important;
+  }
+  .col-2 {
+    padding: 0 !important;
+  }
+  .conteudoLogin {
+    width: 65% !important;
+  }
+  input {
+    width: 165px;
+  }
+  .tituloModal {
+    margin: 0 !important;
+    font-size: 15px !important;
+  }
+  .conteudoModal {
+    width: 81% !important;
+  }
+  .campoDeBusca {
+    width: 85px;
+    font-size: 15px;
+  }
+  input::placeholder {
+    font-size: 11px;
+  }
+  input {
+    font-size: 12px !important;
+  }
+  select#sttsFiltro {
+    width: 87px;
+  }
+  .botaoPesquisa {
+    font-size: 10px;
+    margin-left: 0;
+  }
+  .textoResponsivo {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 70px;
+  }
+  .bolinha {
+    display: block;
+  }
+  .totalizacao {
+    margin-left: 16px !important;
+    width: 92% !important;
+  }
+  #totalizacao {
+    margin-left: 0px;
+  }
+  .lupa {
+    left: 259px;
+    bottom: 16px;
+    width: 27px;
+    font-size: 13px;
+  }
+  select {
+    font-size: 10px !important;
+  }
+  option {
+    font-size: 10px !important;
+  }
+  label {
+    margin: 0 !important;
+  }
+  .conteudoCadastro {
+    text-align: center;
+    background-color: white;
+    max-width: 74% !important;
+    margin-left: 44px !important;
+    padding: 30px !important;
+    border: 3px solid #68519d;
+    border-radius: 10px;
+  }
+  .blocoCadastrar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0 !important;
+    padding-top: 30px !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #00000082 !important;
+    z-index: 3;
+  }
+  .conteudoDelete {
+    width: 80% !important;
+  }
+  .buttonModal {
+    margin-top: 30px !important;
+  }
+  .excluirTarefa {
+    margin-right: 38px !important;
+  }
+  .cancelar {
+    margin-top: 20px !important;
+  }
 }
