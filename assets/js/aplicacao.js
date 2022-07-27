@@ -3,8 +3,8 @@
 let linha;
 let tarefa;
 let tarefas;
-let img = "assets/imgs/logoArnia.png";
-let imgBranca = "assets/imgs/arnia.png";
+let img = "assets/imgs/logo.png";
+let imgBranca = "assets/imgs/logo-arnia.png";
 let contraste = false;
 
 function autoContraste() {

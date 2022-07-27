@@ -47,22 +47,12 @@ body {
   right: 60px;
   bottom: 0;
 }
-.logo {
-  width: 220px;
-  margin-left: 100px;
-}
 .imagem-titulo {
   font-size: 25px;
   color: #68519d;
   font-weight: bold;
-  margin-top: 30px;
-  margin-left: 100px;
   display: flex;
   align-items: baseline;
-}
-.imagem-titulo img {
-  width: 22px;
-  margin-right: 5px;
 }
 .adicionar {
   color: #68519d;
@@ -72,8 +62,6 @@ body {
   border: solid 1px #68519d;
   border-radius: 20px;
   padding: 2px 28px;
-  margin-top: 21px;
-  margin-left: 100px;
 }
 .adicionar:hover {
   background-color: #68519d;
@@ -97,7 +85,6 @@ body {
 }
 table {
   width: 750px;
-  margin-left: 100px;
 }
 .conteudos > tr:nth-child(even) {
   background-color: #f5f5f5;
@@ -168,7 +155,6 @@ select#sttsFiltro {
 .filtro {
   position: relative;
   height: 50px;
-  margin-left: 85px !important;
   z-index: 1;
   margin-top: 80px;
   margin-bottom: 20px;
@@ -205,11 +191,7 @@ input {
   width: 8%;
 }
 .welcome {
-  width: 30%;
-  width: 30%;
-  font-size: 25px;
-  margin-top: 50px !important;
-  margin-left: 100px;
+  font-size: 16px;
 }
 .botaoSair {
   margin: 20px 15px;
@@ -261,7 +243,7 @@ input.termos {
   cursor: pointer;
 }
 div#tabela {
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 .totalizacao {
   font-weight: bold;
@@ -272,9 +254,6 @@ div#tabela {
 }
 .totalizacao {
   color: #2c2661;
-}
-#totalizacao {
-  margin-left: 100px;
 }
 /* contraste */
 .body {
@@ -333,11 +312,9 @@ div#tabela {
 }
 
 @media screen and (max-width: 416px) {
-  html {
-    overflow-x: auto;
-  }
   body {
     background: url("");
+    overflow: hidden;
   }
   .cLateral {
     width: 20px;
@@ -379,26 +356,15 @@ div#tabela {
     width: 70px;
     margin-top: 12px !important;
   }
-  .logo {
-    width: 160px;
-    margin-top: 30px;
-    margin-left: 32vw;
-  }
   .imagem-titulo {
     font-size: 16px;
-    margin-top: 0;
-    margin-left: 25vw;
   }
   .filtro {
-    margin-left: 0px !important;
     margin-top: 30px;
     margin-bottom: 0;
-    width: 100px !important;
   }
   table {
     width: 345px;
-    margin-top: 20px;
-    margin-left: 14px;
     font-size: 11px;
   }
   tbody {
@@ -410,12 +376,8 @@ div#tabela {
   .welcome,
   .welcome1 {
     font-size: 16px;
-    margin-top: 20px !important;
-    margin-left: 28vw;
-    margin-bottom: 15px;
   }
   .adicionar {
-    margin-left: 34vw;
     font-size: 10px;
     width: 110px;
   }
