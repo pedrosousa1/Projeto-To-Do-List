@@ -1,0 +1,18 @@
+{
+  "versão": 2,
+  "construções": [
+    {
+      "src": "server.js",
+      "uso": "@vercel / node",
+      "config": {
+        "includeFiles": ["db.json"]
+      }
+    }
+  ],
+  "rotas": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ]
+}

@@ -124,7 +124,7 @@ async function cadastrar() {
         emails: emails,
         password: btoa(password),
       };
-      await fetch("http://localhost:3000/users", {
+      await fetch("https://projeto-to-do-list-six.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -137,7 +137,9 @@ async function cadastrar() {
 }
 
 async function verificaDados(endpoint, param_busca) {
-  let dados = await fetch("http://localhost:3000/" + endpoint + param_busca);
+  let dados = await fetch(
+    "https://projeto-to-do-list-six.vercel.app/" + endpoint + param_busca
+  );
   let resposta = await dados.json();
   // console.log(resposta)
   return resposta;
@@ -202,11 +204,11 @@ function carregamento() {
   document.getElementById("carregamento").style.display = "block";
 }
 
-window.addEventListener("load", (event) => {
+window.addEventListener("load", event => {
   carregamento();
 });
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", event => {
   window.setTimeout(() => {
     document.getElementById("carregamento").classList.add("animate__fadeOut");
   }, 2000);
@@ -269,7 +271,7 @@ async function salva() {
       stats: stts,
     };
 
-    await fetch("http://localhost:3000/tasks", {
+    await fetch("https://projeto-to-do-list-six.vercel.app/tasks", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -290,11 +292,13 @@ async function imprimeTarefas(nomeLogin) {
     nomeLogin = "/?nomeLogin=" + nomeLogin;
   }
 
-  let response = await fetch(`http://localhost:3000/tasks${nomeLogin}`);
+  let response = await fetch(
+    `https://projeto-to-do-list-six.vercel.app/tasks${nomeLogin}`
+  );
   let tasks = await response.json();
   console.log(tasks);
 
-  tasks.forEach((tarefa) => {
+  tasks.forEach(tarefa => {
     total++;
     let cor;
     // console.log(tarefa.stats);
@@ -337,7 +341,9 @@ async function edita(idTarefa) {
 
   // console.log(idTarefa);
   modal.style.display = "block";
-  let response = await fetch(`http://localhost:3000/tasks/${idTarefa}`);
+  let response = await fetch(
+    `https://projeto-to-do-list-six.vercel.app/tasks/${idTarefa}`
+  );
   let tarefa = await response.json();
   // console.log(tarefa);
 
@@ -388,7 +394,7 @@ async function saveEdit(idTarefa) {
       stats: stts,
     };
 
-    await fetch(`http://localhost:3000/tasks/${idTarefa}`, {
+    await fetch(`https://projeto-to-do-list-six.vercel.app/tasks/${idTarefa}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -418,7 +424,7 @@ let deletar;
 async function excluir() {
   let nomeLogin = document.getElementById("nomeLogin").value;
   modalDelete.style.display = "none";
-  await fetch(`http://localhost:3000/tasks/${deletar}`, {
+  await fetch(`https://projeto-to-do-list-six.vercel.app/tasks/${deletar}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
@@ -456,18 +462,18 @@ async function proucurarTarefa() {
 
   if (valor != "") {
     var espera = await fetch(
-      `http://localhost:3000/tasks?q=${valor}&nomeLogin=${nomeLogin}`
+      `https://projeto-to-do-list-six.vercel.app/tasks?q=${valor}&nomeLogin=${nomeLogin}`
     );
     var resposta = await espera.json();
   }
   if (status != "") {
     var espera = await fetch(
-      `http://localhost:3000/tasks?q=${status}&nomeLogin=${nomeLogin}`
+      `https://projeto-to-do-list-six.vercel.app/tasks?q=${status}&nomeLogin=${nomeLogin}`
     );
     var resposta = await espera.json();
   }
 
-  resposta.forEach((tarefa) => {
+  resposta.forEach(tarefa => {
     total++;
     let cor;
     if (tarefa.stats === "Concluída") {
@@ -509,12 +515,12 @@ async function numCrescente(variavel, AscDesc) {
   let nomeLogin = document.getElementById("nomeLogin").value;
   let linha = "";
   let espera = await fetch(
-    `http://localhost:3000/tasks?_sort=${variavel}&_order=${AscDesc}&nomeLogin=${nomeLogin}`
+    `https://projeto-to-do-list-six.vercel.app/tasks?_sort=${variavel}&_order=${AscDesc}&nomeLogin=${nomeLogin}`
   );
   let resposta = await espera.json();
   // console.log(resposta)
 
-  resposta.forEach((tarefa) => {
+  resposta.forEach(tarefa => {
     let cor;
     if (tarefa.stats === "Concluída") {
       cor = "verde";
